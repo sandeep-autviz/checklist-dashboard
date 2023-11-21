@@ -36,7 +36,6 @@ export default function Login() {
       console.log(error);
     }
   }
-
   console.log(credentials, "cred");
   return (
     <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
@@ -44,6 +43,7 @@ export default function Login() {
         <h1 className="text-3xl font-semibold text-center text-purple-700 underline">
           Sign in
         </h1>
+
         <form className="mt-6">
           <div className="mb-2">
             <label
@@ -62,12 +62,14 @@ export default function Login() {
             />
           </div>
           <div className="mb-2">
+
             <label
               htmlFor="password"
               className="block text-sm font-semibold text-gray-800"
             >
               Password
             </label>
+
             <input
               type="password"
               name="password"
@@ -91,8 +93,7 @@ export default function Login() {
         </form>
 
         {/* <p className="mt-8 text-xs font-light text-center text-gray-700">
-          {" "}
-          Don't have an account?{" "}
+          Don't have an account?
           <a href="" className="font-medium text-purple-600 hover:underline">
             Sign up
           </a>
