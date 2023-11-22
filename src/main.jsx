@@ -5,8 +5,11 @@ import "./index.css";
 import Login from "./pages/Login";
 import Root from "./routes/root";
 import ErrorPage from "./pages/Error-page";
-import AddTask from "./components/AddTask";
-import Dashboard from "./components/Dashboard";
+import AddTask from "./pages/AddTask";
+import Dashboard from "./pages/Dashboard";
+import UsersPage from "./pages/UsersPage";
+import Task from "./pages/Task";
+import Config from "./pages/Config";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -18,12 +21,20 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
-        path: "",
-        element: <div>task table</div>,
+        path: "users",
+        element: <UsersPage />,
       },
       {
         path: "add-tasks",
         element: <AddTask />,
+      },
+      {
+        path: "tasks",
+        element: <Task />,
+      },
+      {
+        path: "config",
+        element: <Config />,
       },
     ],
   },

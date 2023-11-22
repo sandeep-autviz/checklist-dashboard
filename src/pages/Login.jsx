@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { base_Url } from "../api";
 export default function Login() {
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
@@ -20,15 +21,11 @@ export default function Login() {
     e.preventDefault();
     console.log("hit");
     try {
-      const res = await axios.post(
-        "https://2a40-61-247-239-206.ngrok-free.app/account/login/",
-        credentials,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const res = await axios.post(`${base_Url}/account/login/`, credentials, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       console.log(res, "response");
       localStorage.setItem("authtoken", res.data.token);
       navigate("/");
@@ -62,7 +59,6 @@ export default function Login() {
             />
           </div>
           <div className="mb-2">
-
             <label
               htmlFor="password"
               className="block text-sm font-semibold text-gray-800"

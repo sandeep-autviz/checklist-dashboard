@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const base_Url =
-  "https://ae10-2401-4900-1c2a-8fff-00-2b-cf7e.ngrok-free.app/project/human-contact-point";
+export const base_Url = "http://127.0.0.1:8000/";
 
 const baseInstance = axios.create({
   base_Url,
