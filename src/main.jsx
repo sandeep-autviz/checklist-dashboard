@@ -10,10 +10,23 @@ import Dashboard from "./pages/Dashboard";
 import UsersPage from "./pages/UsersPage";
 import Task from "./pages/Task";
 import Config from "./pages/Config";
+
+const PrivateRoute = ({ element }) => {
+  window.localStorage.setItem("token","One");
+  const auth = localStorage.getItem("token");
+  return auth && auth !== null ? element : <Login />;
+};
+
+const AuthRoute = ({ element }) => {
+  window.localStorage.setItem("token","One");
+  const auth = localStorage.getItem("token");
+  return auth && auth !== null ? <Redirect to="/dashboard" /> : element;
+};
+
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
+    element: <PrivateRoute element={<Root />} />,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -40,7 +53,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/login",
+    path: <AuthRoute element={<Login />} />,
     element: <Login />,
   },
 ]);
