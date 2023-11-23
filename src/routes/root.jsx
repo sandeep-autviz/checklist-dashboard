@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet, Link, useNavigate } from "react-router-dom";
 export default function Root() {
   const navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem("authtoken")) {
+      navigate("/dashboard");
+    } else {
+      navigate("/login");
+    }
+  }, []);
   return (
     <div className="flex">
       <div className="flex flex-col h-screen p-3 bg-white shadow w-60">
@@ -57,7 +64,7 @@ export default function Root() {
                     />
                   </svg>
                   <span>
-                    <Link to="tasks">Tasks</Link>
+                    <Link to="tasks">Mission</Link>
                   </span>
                 </a>
               </li>
@@ -113,7 +120,7 @@ export default function Root() {
               </li>
               <li
                 onClick={() => {
-                  localStorage.removeItem("authToken");
+                  localStorage.removeItem("authtoken");
                   navigate("/login");
                 }}
                 className="rounded-sm"

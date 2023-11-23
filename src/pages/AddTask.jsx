@@ -17,17 +17,13 @@ const AddTask = () => {
       formData.append("taskName", taskData.taskName);
       formData.append("category", taskData.category);
       formData.append("description", taskData.description);
-      formData.append("image", taskData.image); 
+      formData.append("image", taskData.image);
 
-      const response = await axios.post(
-        "",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axios.post("", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       console.log("Task created:", response.data);
     } catch (error) {
@@ -65,7 +61,6 @@ const AddTask = () => {
           type="text"
           name="taskName"
           value={taskData.taskName}
-
           onChange={handleInputChange}
           placeholder="Enter Task Name"
         />
