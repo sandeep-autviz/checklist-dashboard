@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Header({ title, buttonTitle, setSearch }) {
+export default function Header({ title, buttonTitle, setSearch, onClick }) {
   return (
     <header className="bg-stone-200 text-white py-4">
       <div className="container mx-auto flex justify-between items-center">
@@ -25,7 +25,10 @@ export default function Header({ title, buttonTitle, setSearch }) {
             <option value="filter2">Filter 2</option>
             {/* Add more filter options as needed */}
           </select>
-          <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+          <button
+            onClick={onClick}
+            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
+          >
             Add {buttonTitle}
           </button>
         </div>

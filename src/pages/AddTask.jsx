@@ -12,6 +12,7 @@ const AddTask = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    
     try {
       const formData = new FormData();
       formData.append("taskName", taskData.taskName);

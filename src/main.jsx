@@ -10,6 +10,9 @@ import Dashboard from "./pages/Dashboard";
 import UsersPage from "./pages/UsersPage";
 import Task from "./pages/Task";
 import Config from "./pages/Config";
+import AddSubTask from "./pages/AddSubTask";
+import SubTaskList from "./pages/SubTaskList";
+import AddMission from "./pages/AddMission";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,8 +28,12 @@ const router = createBrowserRouter([
         element: <UsersPage />,
       },
       {
-        path: "add-tasks",
+        path: "add-tasks/:userId",
         element: <AddTask />,
+      },
+      {
+        path: "tasks-view/:missionId",
+        element: <SubTaskList />,
       },
       {
         path: "tasks",
@@ -35,6 +42,14 @@ const router = createBrowserRouter([
       {
         path: "config",
         element: <Config />,
+      },
+      {
+        path: "addSubtask/:userId",
+        element: <AddSubTask />,
+      },
+      {
+        path: "addMission",
+        element: <AddMission />,
       },
     ],
   },
