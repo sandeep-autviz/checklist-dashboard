@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { toast } from "sonner";
 
 const AddTask = () => {
   const [taskData, setTaskData] = useState({
@@ -12,7 +13,6 @@ const AddTask = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    
     try {
       const formData = new FormData();
       formData.append("taskName", taskData.taskName);
@@ -27,6 +27,7 @@ const AddTask = () => {
       });
 
       console.log("Task created:", response.data);
+      toast.success("Mission added successfully");
     } catch (error) {
       console.error("Task creation failed:", error);
     }

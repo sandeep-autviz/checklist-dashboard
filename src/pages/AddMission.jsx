@@ -2,14 +2,19 @@ import React, { useEffect, useRef, useState } from "react";
 import { base_Url } from "../api";
 import axios from "axios";
 import { Autocomplete, TextField } from "@mui/material";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const AddMission = () => {
   const [mission, setMission] = useState("");
+  const navigate = useNavigate();
   const [image, setImage] = useState("");
   const [catId, setCatId] = useState(null);
   const token = localStorage.getItem("authtoken");
   const [cat, setCat] = useState([]);
+
   const handleSubmit = async (e) => {
+    e.preventDefault();
     axios.post(
       `${base_Url}data/missions/`,
       {
@@ -22,8 +27,8 @@ const AddMission = () => {
         },
       }
     );
-    e.preventDefault();
-
+    toast.success("Mission added succesfully");
+    navigate("/tasks");
     console.log("Mission:", mission);
     // console.log("Category:", category);
     console.log("Image URL:", image);

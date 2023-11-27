@@ -13,6 +13,7 @@ import Config from "./pages/Config";
 import AddSubTask from "./pages/AddSubTask";
 import SubTaskList from "./pages/SubTaskList";
 import AddMission from "./pages/AddMission";
+import { Toaster } from "sonner";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -62,6 +63,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <Toaster richColors />
     <RouterProvider router={router} />
   </React.StrictMode>
 );

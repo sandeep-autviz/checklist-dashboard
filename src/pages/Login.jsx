@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { base_Url } from "../api";
+import { toast } from "sonner";
 export default function Login() {
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({
@@ -28,6 +29,7 @@ export default function Login() {
       });
       console.log(res, "response");
       localStorage.setItem("authtoken", res.data.token);
+      toast.success("Login successfull");
       navigate("/");
     } catch (error) {
       console.log(error);

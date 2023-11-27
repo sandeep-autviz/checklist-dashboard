@@ -104,6 +104,15 @@ const CatHeader = ({ setActiveTab, activeTab }) => {
             // onChange={handleInputChange}
             placeholder="Enter Task Name"
           />
+          <input
+            // onChange={(e) => setCatValue(e.target.value)}
+            className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:border-blue-500"
+            type="file"
+            name="taskName"
+            // value={taskData.taskName}
+            // onChange={handleInputChange}
+            placeholder="Enter Task Name"
+          />
           <button
             onClick={() => saveCat(token)}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"

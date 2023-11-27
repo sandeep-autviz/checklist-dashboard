@@ -16,14 +16,12 @@ export default function Header({ title, buttonTitle, setSearch, onClick }) {
               className="bg-gray-700 text-white rounded-md py-1 px-3 focus:outline-none focus:ring focus:border-blue-500"
             />
             <button className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-200">
-              {/* Add your search icon here */}
               Search
             </button>
           </div>
           <select className="bg-gray-700 text-white rounded-md py-1 px-3 focus:outline-none focus:ring">
             <option value="filter1">Filter 1</option>
             <option value="filter2">Filter 2</option>
-            {/* Add more filter options as needed */}
           </select>
           <button
             onClick={onClick}

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { base_Url } from "../api";
+import { toast } from "sonner";
 
 const TaskInput = () => {
   const [task, setTask] = useState("");
@@ -26,6 +27,7 @@ const TaskInput = () => {
           },
         }
       );
+      toast.success("Subtask added successfully");
       navigate("/tasks");
     } catch (error) {
       console.log(error);

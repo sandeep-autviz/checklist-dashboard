@@ -13,6 +13,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 const style = {
   position: "absolute",
   top: "50%",
@@ -28,16 +29,17 @@ export default function Task() {
   const [mData, setMData] = useState([]);
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
+
+  const token = localStorage.getItem("authtoken");
   const handleClose = () => setOpen(false);
   useEffect(() => {
-    const token = localStorage.getItem("authtoken");
     getMissionD(token);
   }, []);
 
   async function getMissionD(token) {
     try {
       const res = await axios.get(`${base_Url}data/missions/`, {
-        headers: {
+        headers: {  
           Authorization: `Token ${token}`,
         },
       });
@@ -50,7 +52,22 @@ export default function Task() {
   function onAddMissionClick() {
     navigate("/addMission");
   }
-  return (
+  async function handleDelete(id) {
+    try {
+      await axios.delete(`${base_Url}/data/missions/${id}`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      toast.success("Deleted succesfully");
+    } catch (error) {
+      console.log(error);
+    }
+    const data = mData.filter((item) => item.id != id);
+    setMData(data);
+  }
+
+  return ( 
     <>
       <Header
         title="Task Page"
@@ -89,6 +106,7 @@ export default function Task() {
                   >
                     Add Task
                   </button>
+                  <button onClick={() => handleDelete(row.id)}>Delete</button>
                 </TableCell>
               </TableRow>
             ))}

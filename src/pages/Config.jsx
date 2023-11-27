@@ -12,6 +12,7 @@ import axios from "axios";
 import { base_Url } from "../api";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 export default function Config() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("active");
@@ -57,9 +58,7 @@ export default function Config() {
       console.log("error");
     }
   }
-  function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-  }
+
   async function handleSwitch(id, token, action) {
     try {
       const res = await axios.patch(
@@ -76,7 +75,18 @@ export default function Config() {
     } catch (error) {
       console.log(error);
     }
+    if (action === false) {
+      const data = activeCatData.filter((item) => item.id != id);
+      setActiveCatData(data);
+    }
+    if (action === true) {
+      const data = inActiveCatData.filter((item) => item.id != id);
+      setInActiveCatData(data);
+    }
+    navigate("/dashboard");
+    toast.success("Category switched successfully");
   }
+
   function handleViewButton() {
     navigate("/tasks");
   }
@@ -114,7 +124,7 @@ export default function Config() {
                         onClick={() => handleSwitch(row.id, token, false)}
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                       >
-                        Switch
+                        {activeTab === "active" ? "Inactive" : ""}
                       </button>
                     </TableCell>
                   </TableRow>
@@ -149,7 +159,7 @@ export default function Config() {
                         onClick={(e) => handleSwitch(row.id, token, true)}
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                       >
-                        Switch
+                        Active
                       </button>
                     </TableCell>
                   </TableRow>
