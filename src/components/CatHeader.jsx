@@ -6,6 +6,8 @@ import Modal from "@mui/material/Modal";
 import React from "react";
 import { base_Url } from "../api";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 const style = {
   position: "absolute",
   top: "50%",
@@ -19,6 +21,7 @@ const style = {
 };
 
 const CatHeader = ({ setActiveTab, activeTab }) => {
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const [catValue, setCatValue] = useState("");
   const [token, setToken] = useState("");
@@ -32,12 +35,17 @@ const CatHeader = ({ setActiveTab, activeTab }) => {
     console.log("run");
     try {
       const fData = new FormData();
+      // const data = {};
+
       fData.append("mission_type", catValue);
-      const res = await axios.post(`${base_Url}/data/mission-type/`, fData, {
+      console.log(fData, "fdata");
+      const res = await axios.post(`${base_Url}data/mission-type/`, fData, {
         headers: {
           Authorization: `Token ${token}`,
         },
       });
+      toast.success("Category added successfully");
+      navigate("/dashboard");
     } catch (error) {
       console.log(error);
     }
@@ -45,7 +53,7 @@ const CatHeader = ({ setActiveTab, activeTab }) => {
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
-
+  console.log("cat ", catValue);
   return (
     <div className="bg-gray-200 p-4">
       <div>

@@ -46,7 +46,7 @@ export default function Root() {
                 </p>
               </li>
               <li className="rounded-sm">
-                <a
+                <p
                   href=""
                   className="flex items-center p-2 space-x-3 rounded-md"
                 >
@@ -67,11 +67,11 @@ export default function Root() {
                   <span>
                     <Link to="tasks">Mission</Link>
                   </span>
-                </a>
+                </p>
               </li>
 
               <li className="rounded-sm">
-                <a
+                <p
                   href=""
                   className="flex items-center p-2 space-x-3 rounded-md"
                 >
@@ -92,11 +92,11 @@ export default function Root() {
                   <span>
                     <Link to="users">Users</Link>
                   </span>
-                </a>
+                </p>
               </li>
 
               <li className="rounded-sm">
-                <a
+                <p
                   href=""
                   className="flex items-center p-2 space-x-3 rounded-md"
                 >
@@ -117,7 +117,7 @@ export default function Root() {
                   <span>
                     <Link to="config">Config</Link>
                   </span>
-                </a>
+                </p>
               </li>
               <li
                 onClick={() => {
