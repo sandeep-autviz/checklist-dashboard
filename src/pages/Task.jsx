@@ -14,6 +14,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { Trash2 } from "lucide-react";
 const style = {
   position: "absolute",
   top: "50%",
@@ -29,7 +30,6 @@ export default function Task() {
   const [mData, setMData] = useState([]);
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
-
   const token = localStorage.getItem("authtoken");
   const handleClose = () => setOpen(false);
   useEffect(() => {
@@ -39,7 +39,7 @@ export default function Task() {
   async function getMissionD(token) {
     try {
       const res = await axios.get(`${base_Url}data/missions/`, {
-        headers: {  
+        headers: {
           Authorization: `Token ${token}`,
         },
       });
@@ -67,10 +67,10 @@ export default function Task() {
     setMData(data);
   }
 
-  return ( 
+  return (
     <>
       <Header
-        title="Task Page"
+        title="Mission"
         buttonTitle="Mission"
         onClick={onAddMissionClick}
       />
@@ -104,9 +104,14 @@ export default function Task() {
                     }}
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                   >
-                    Add Task
+                    +
                   </button>
-                  <button onClick={() => handleDelete(row.id)}>Delete</button>
+                  <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    onClick={() => handleDelete(row.id)}
+                  >
+                    <Trash2 />
+                  </button>
                 </TableCell>
               </TableRow>
             ))}

@@ -42,6 +42,7 @@ export default function Config() {
       console.log("error");
     }
   }
+
   async function getInActiveCatData(token) {
     try {
       const res = await axios.get(
@@ -122,7 +123,7 @@ export default function Config() {
                       />
                       <button
                         onClick={() => handleSwitch(row.id, token, false)}
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4"
                       >
                         {activeTab === "active" ? "Inactive" : ""}
                       </button>
@@ -157,7 +158,7 @@ export default function Config() {
                       <Button onClick={handleViewButton} title="View Mission" />
                       <button
                         onClick={(e) => handleSwitch(row.id, token, true)}
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4"
                       >
                         Active
                       </button>

@@ -55,11 +55,11 @@ const CatHeader = ({ setActiveTab, activeTab }) => {
   };
   console.log("cat ", catValue);
   return (
-    <div className="bg-gray-200 p-4">
-      <div>
+    <div className="bg-gray-200 p-4"> 
+      <div className="w-36 ml-auto">
         <button
           onClick={handleOpen}
-          className={`${"bg-blue-500 text-white"} px-4 py-2 rounded-md`}
+          className={`${"bg-blue-500 text-white"} px-4 py-2 rounded-md ml-auto`}
         >
           Add Category
         </button>

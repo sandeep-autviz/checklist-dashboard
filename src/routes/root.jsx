@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Outlet, Link, useNavigate } from "react-router-dom";
-import { Toaster, toast } from "sonner";
 export default function Root() {
   const navigate = useNavigate();
   useEffect(() => {
@@ -10,12 +9,13 @@ export default function Root() {
       navigate("/login");
     }
   }, []);
+
   return (
     <div className="flex">
       <div className="flex flex-col h-screen p-3 bg-white shadow w-60">
         <div className="space-y-3">
           <div className="flex items-center">
-            <h2 className="text-xl font-bold">Dashboard</h2>
+            <h2 className="text-xl font-extrabold">Todo-Checklist</h2>
           </div>
           <div className="flex-1">
             <ul className="pt-2 pb-4 space-y-1 text-sm">
