@@ -29,11 +29,14 @@ const style = {
 export default function Task() {
   const [mData, setMData] = useState([]);
   const [open, setOpen] = React.useState(false);
+  const [catId, setCatId] = useState(null);
+  const [cat, setCat] = useState([]);
   const navigate = useNavigate();
   const token = localStorage.getItem("authtoken");
   const handleClose = () => setOpen(false);
   useEffect(() => {
     getMissionD(token);
+    getCat();
   }, []);
 
   async function getMissionD(token) {
@@ -45,6 +48,19 @@ export default function Task() {
       });
       console.log(res.data.data.result, "userData");
       setMData(res.data.data.result);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async function getCat() {
+    try {
+      const res = await axios.get(`${base_Url}/data/mission-type-dropdown/`, {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      });
+      console.log(res.data.data.mission_type_list);
+      setCat(res.data.data.mission_type_list);
     } catch (error) {
       console.log(error);
     }
@@ -72,7 +88,12 @@ export default function Task() {
       <Header
         title="Mission"
         buttonTitle="Mission"
+        cat={cat}
+        setCatId={setCatId}
+        mission={true}
         onClick={onAddMissionClick}
+        mData={mData}
+        setMData={setMData}
       />
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">

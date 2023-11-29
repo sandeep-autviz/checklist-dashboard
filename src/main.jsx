@@ -14,6 +14,7 @@ import AddSubTask from "./pages/AddSubTask";
 import SubTaskList from "./pages/SubTaskList";
 import AddMission from "./pages/AddMission";
 import { Toaster } from "sonner";
+import ConfigMissions from "./pages/ConfigMissions";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "tasks-view/:missionId",
         element: <SubTaskList />,
+      },
+      {
+        path: "catmissionList/:catId",
+        element: <ConfigMissions />,
       },
       {
         path: "tasks",

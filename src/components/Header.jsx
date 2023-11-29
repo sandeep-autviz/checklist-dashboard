@@ -1,6 +1,34 @@
+import { Autocomplete, TextField } from "@mui/material";
+import axios from "axios";
 import React from "react";
+import { base_Url } from "../api";
 
-export default function Header({ title, buttonTitle, setSearch, onClick }) {
+export default function Header({
+  title,
+  buttonTitle,
+  setSearch,
+  onClick,
+  cat,
+  setCatId,
+  mData,
+  setMData,
+}) {
+  // http://127.0.0.1:8000/data/missions/?mission_type=10
+  const token = localStorage.getItem("authtoken");
+  async function filterBasedOnCatagory(id) {
+    try {
+      const res = await axios.get(
+        `${base_Url}/data/missions/?mission_type=${id}`,
+        {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        }
+      );
+      console.log(res.data.data.result, "filtered data");
+      setMData(res.data.data.result);
+    } catch (error) {}
+  }
   return (
     <header className="bg-stone-200 text-white py-4">
       <div className="container mx-auto flex justify-between items-center">
@@ -19,10 +47,34 @@ export default function Header({ title, buttonTitle, setSearch, onClick }) {
               Search
             </button>
           </div>
-          <select className="bg-gray-700 text-white rounded-md py-1 px-3 focus:outline-none focus:ring">
+          {/* <select className="bg-gray-700 text-white rounded-md py-1 px-3 focus:outline-none focus:ring">
             <option value="filter1">Filter 1</option>
             <option value="filter2">Filter 2</option>
-          </select>
+          </select> */}
+          {title === "Mission" ? (
+            <Autocomplete
+              disablePortal
+              id="combo-box-demo"
+              getOptionLabel={(option) => option.mission_type}
+              onChange={(a, b) => {
+                console.log(b.id, " iam a option");
+                // const filteredData = mData.filter(
+                //   (item) => item.mission_type === b.id
+                // );
+                filterBasedOnCatagory(b.id);
+                // setCatId(b.id);
+                // console.log(filteredData, "filtered data");
+                // setMData(filteredData);
+              }}
+              options={cat}
+              sx={{ width: 300 }}
+              renderInput={(params) => (
+                <TextField {...params} label="Categories" />
+              )}
+            />
+          ) : (
+            <></>
+          )}
           <button
             onClick={onClick}
             className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"

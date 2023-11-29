@@ -88,8 +88,8 @@ export default function Config() {
     toast.success("Category switched successfully");
   }
 
-  function handleViewButton() {
-    navigate("/tasks");
+  function handleViewButton(id) {
+    navigate(`/catmissionList/${id}`);
   }
   return (
     <>
@@ -118,14 +118,14 @@ export default function Config() {
                     </TableCell>
                     <TableCell align="right">
                       <Button
-                        onClick={handleViewButton}
+                        onClick={() => handleViewButton(row.id)}
                         title="View Missions"
                       />
                       <button
                         onClick={() => handleSwitch(row.id, token, false)}
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4"
                       >
-                        {activeTab === "active" ? "Inactive" : ""}
+                        {activeTab === "active" ? "Inactivate" : ""}
                       </button>
                     </TableCell>
                   </TableRow>
@@ -155,12 +155,19 @@ export default function Config() {
                       {row.mission_type}
                     </TableCell>
                     <TableCell align="right">
-                      <Button onClick={handleViewButton} title="View Mission" />
+                      {activeTab === "active" ? (
+                        <Button
+                          onClick={handleViewButton}
+                          title="View Mission"
+                        />
+                      ) : (
+                        <></>
+                      )}
                       <button
                         onClick={(e) => handleSwitch(row.id, token, true)}
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4"
                       >
-                        Active
+                        Activate
                       </button>
                     </TableCell>
                   </TableRow>
