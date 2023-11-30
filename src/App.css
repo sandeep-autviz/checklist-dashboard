@@ -3,7 +3,7 @@
 }
 .top-input input {
     background: #fff;
-    padding: 10px;
+    padding: 8px 10px;
 }
 .table-striped tbody tr:nth-of-type(odd) {
     background-color: rgba(0,0,0,.05);
@@ -27,4 +27,23 @@
 }
 .side-menu li:hover p {
     color: #fff;
+}
+.bg-blue {
+    background: #EEF5FF ;
+}
+.bg-peach {
+    background: #F4EAE0;
+}
+.bg-darkblue {
+    background: #FAEED1;
+}
+.min-height {
+    height: 120px;
+    padding: 28px;
+}
+.table-striped tbody tr:hover {
+    background: #f2f2f2;
+}
+.border-bottom {
+    border-bottom: 1px solid #ccc;
 }

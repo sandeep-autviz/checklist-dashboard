@@ -40,7 +40,7 @@ export default function UsersPage() {
         title="User Page"
       />
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table className="table-striped" sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell>First Name</TableCell>

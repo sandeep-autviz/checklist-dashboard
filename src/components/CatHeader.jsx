@@ -20,7 +20,7 @@ const style = {
   p: 4,
 };
 
-const CatHeader = ({ setActiveTab, activeTab }) => {
+const CatHeader = ({ setActiveTab, activeTab, title }) => {
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const [catValue, setCatValue] = useState("");
@@ -55,8 +55,11 @@ const CatHeader = ({ setActiveTab, activeTab }) => {
   };
   console.log("cat ", catValue);
   return (
-    <div className="bg-gray-200 p-4"> 
-      <div className="w-36 ml-auto">
+    <div className="bg-gray-200 p-4 flex">
+      <div class="text-2xl font-bold">
+      {title}
+      </div>
+      <div className="mx-3 ml-auto">
         <button
           onClick={handleOpen}
           className={`${"bg-blue-500 text-white"} px-4 py-2 rounded-md ml-auto`}

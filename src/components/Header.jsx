@@ -31,7 +31,7 @@ export default function Header({
     } catch (error) {}
   }
   return (
-    <header className="inner-head-bg bg-stone-200 text-white p-4">
+    <header className="inner-head-bg bg-stone-200 text-white p-2">
       <div className="container mx-auto flex justify-between items-center">
         <div>
           <h1 className="text-2xl font-bold">{title}</h1>
@@ -56,7 +56,7 @@ export default function Header({
           {title === "Mission" ? (
             <Autocomplete className="bg-white"
               disablePortal
-              id="combo-box-demo"
+              id="combo-box-demo" style={{ height: '40px',  borderRadius: '5px' }}
               getOptionLabel={(option) => option.mission_type}
               onChange={(a, b) => {
                 console.log(b.id, " iam a option");
@@ -71,7 +71,7 @@ export default function Header({
               options={cat}
               sx={{ width: 220 }}
               renderInput={(params) => (
-                <TextField {...params} label="Categories" />
+                <TextField style={{ padding: '2', height: '40px', top: '-4' }} {...params} placeholder="Categories" />
               )}
             />
           ) : (

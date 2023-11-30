@@ -94,13 +94,17 @@ export default function Config() {
   return (
     <>
       <div>
-        <CatHeader setActiveTab={setActiveTab} activeTab={activeTab} />
+        <CatHeader
+          title="Config"
+          setActiveTab={setActiveTab}
+          activeTab={activeTab}
+        />
       </div>
       {activeTab === "active" ? (
         <>
-          <div>Active categories</div>
+          <div class="p-3 border-bottom">Active categories</div>
           <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <Table className="table-striped table" sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
                   <TableCell> Name </TableCell>
@@ -136,9 +140,9 @@ export default function Config() {
         </>
       ) : (
         <>
-          <div>Inactive categories</div>
+          <div className="p-3 border-bottom">Inactive categories</div>
           <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <Table className="table-striped" sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
                   <TableCell>Catagories Name</TableCell>
