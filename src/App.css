@@ -1,0 +1,30 @@
+.inner-head-bg {
+    background-color: #164863;
+}
+.top-input input {
+    background: #fff;
+    padding: 10px;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0,0,0,.05);
+}
+.sidebar-logo {
+    width: 100%;
+    border-bottom: 1px solid #c0c0c0;
+    padding: 10px;
+}
+.sidebar-logo {
+    width: 100%;
+    border-bottom: 1px solid #c0c0c0;
+    padding: 10px;
+}
+.side-menu li {
+    border-bottom: 1px solid #ededed;
+    padding: 6px 10px;
+}
+.side-menu li:hover {
+    background: #164863;
+}
+.side-menu li:hover p {
+    color: #fff;
+}

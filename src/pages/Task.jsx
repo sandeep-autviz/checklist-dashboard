@@ -14,7 +14,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { Trash2 } from "lucide-react";
+import { PlusCircle, Trash2 } from "lucide-react";
 const style = {
   position: "absolute",
   top: "50%",
@@ -95,7 +95,7 @@ export default function Task() {
         mData={mData}
         setMData={setMData}
       />
-      <TableContainer component={Paper}>
+      <TableContainer className="table-striped" component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -123,9 +123,9 @@ export default function Task() {
                     onClick={(e) => {
                       navigate(`/addSubtask/${row.id}`);
                     }}
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold mx-3 py-2 px-4 rounded"
                   >
-                    +
+                    <PlusCircle />
                   </button>
                   <button
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
