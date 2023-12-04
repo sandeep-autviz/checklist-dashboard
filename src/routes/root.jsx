@@ -1,7 +1,7 @@
 import "../App.css";
 import React, { useEffect } from "react";
 import { Outlet, Link, useNavigate } from "react-router-dom";
-import Header from "../components/Header";
+
 export default function Root() {
   const navigate = useNavigate();
   useEffect(() => {

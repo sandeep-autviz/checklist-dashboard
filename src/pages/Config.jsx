@@ -104,7 +104,11 @@ export default function Config() {
         <>
           <div class="p-3 border-bottom">Active categories</div>
           <TableContainer component={Paper}>
-            <Table className="table-striped table" sx={{ minWidth: 650 }} aria-label="simple table">
+            <Table
+              className="table-striped table"
+              sx={{ minWidth: 650 }}
+              aria-label="simple table"
+            >
               <TableHead>
                 <TableRow>
                   <TableCell> Name </TableCell>
@@ -129,7 +133,7 @@ export default function Config() {
                         onClick={() => handleSwitch(row.id, token, false)}
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4"
                       >
-                        {activeTab === "active" ? "Inactivate" : ""}
+                        {activeTab === "active" ? "Activate" : ""}
                       </button>
                     </TableCell>
                   </TableRow>
@@ -142,7 +146,11 @@ export default function Config() {
         <>
           <div className="p-3 border-bottom">Inactive categories</div>
           <TableContainer component={Paper}>
-            <Table className="table-striped" sx={{ minWidth: 650 }} aria-label="simple table">
+            <Table
+              className="table-striped"
+              sx={{ minWidth: 650 }}
+              aria-label="simple table"
+            >
               <TableHead>
                 <TableRow>
                   <TableCell>Catagories Name</TableCell>

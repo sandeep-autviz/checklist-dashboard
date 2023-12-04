@@ -8,6 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { base_Url } from "../api";
 
 export default function ConfigMissions() {
   const [missionData, setMissionData] = useState([]);
@@ -25,8 +26,10 @@ export default function ConfigMissions() {
         }
       );
       console.log(res.data.data.result);
+
       setMissionData(res.data.data.result);
     } catch (error) {
+
       console.log(error);
     }
   }
@@ -49,9 +52,9 @@ export default function ConfigMissions() {
                 key={row.name}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell component="th" scope="row">
+                <TableCell component="th"  scope="row">
                   {row.name}
-                </TableCell>
+                </TableCell>             
                 <TableCell align="right">{row.tasks.length}</TableCell>
               </TableRow>
             ))}
