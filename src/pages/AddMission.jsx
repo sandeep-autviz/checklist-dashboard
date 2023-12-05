@@ -53,20 +53,20 @@ const AddMission = () => {
   console.log(catId);
   console.log(mission);
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex items-center justify-center h-screen" style={{background: '#f5f5f5'}}>
       <form
         onSubmit={handleSubmit}
-        className="bg-white shadow-2xl rounded px-8 pt-6 pb-8 mb-4"
+        className="bg-white mission-box rounded mb-4"
       >
         <div className="mb-4">
           <label
-            className="block text-gray-700 text-sm font-bold mb-2"
+            className="block text-gray-700 text-md font-bold mb-2"
             htmlFor="missionInput"
           >
             Add Mission
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="mt-2 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="missionInput"
             type="text"
             placeholder="Enter mission..."
@@ -76,7 +76,7 @@ const AddMission = () => {
         </div>
         <div className="mb-4">
           <label
-            className="block text-gray-700 text-sm font-bold mb-2"
+            className="mb-2 block text-gray-700 text-md font-bold mb-2"
             htmlFor="categoryDropdown"
           >
             Category
@@ -90,7 +90,7 @@ const AddMission = () => {
               setCatId(b.id);
             }}
             options={cat}
-            sx={{ width: 300 }}
+            sx={{ width: 380 }}
             renderInput={(params) => (
               <TextField {...params} label="Categories" />
             )}
@@ -98,13 +98,13 @@ const AddMission = () => {
         </div>
         <div className="mb-4">
           <label
-            className="block text-gray-700 text-sm font-bold mb-2"
+            className="block text-gray-700 text-md font-bold mb-2"
             htmlFor="imageInput"
           >
             Image URL
           </label>
           <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="mt-2 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="imageInput"
             type="file"
             placeholder="Enter image URL..."
@@ -112,9 +112,9 @@ const AddMission = () => {
             onChange={(e) => setImage(e.target.value)}
           />
         </div>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between submit-btn">
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
             Submit

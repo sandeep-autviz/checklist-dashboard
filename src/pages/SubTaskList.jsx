@@ -9,6 +9,8 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import axios from "axios";
 import { base_Url } from "../api";
+import Header from "../components/Header";
+import { Trash2 } from "lucide-react";
 
 export default function SubTaskList() {
   const token = localStorage.getItem("authtoken");
@@ -51,13 +53,14 @@ export default function SubTaskList() {
   }
   return (
     <>
+      <Header title={"Tasks"} />
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table className="mt-5 table-striped" sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>Task Name</TableCell>
-              <TableCell align="right">Category</TableCell>
-              <TableCell align="right">Action</TableCell>
+              <TableCell><b>Task Name</b></TableCell>
+              <TableCell align="left"><b>Category</b></TableCell>
+              <TableCell style={{paddingRight: '70px'}} align="right"><b>Action</b></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -69,9 +72,9 @@ export default function SubTaskList() {
                 <TableCell component="th" scope="row">
                   {row.name}
                 </TableCell>
-                <TableCell align="right">{row.mission_category}</TableCell>
-                <TableCell align="right">
-                  <button onClick={() => handleDelete(row.id)}>Delete</button>
+                <TableCell align="left">{row.mission_category}</TableCell>
+                <TableCell align="right" style={{paddingRight: '60px'}}>
+                  <button className="inner-head-bg hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => handleDelete(row.id)}><Trash2 /></button>
                 </TableCell>
               </TableRow>
             ))}

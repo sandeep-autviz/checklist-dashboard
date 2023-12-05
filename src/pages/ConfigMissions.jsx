@@ -9,6 +9,7 @@ import Paper from "@mui/material/Paper";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { base_Url } from "../api";
+import Header from "../components/Header";
 
 export default function ConfigMissions() {
   const [missionData, setMissionData] = useState([]);
@@ -18,7 +19,7 @@ export default function ConfigMissions() {
   async function getCatMission() {
     try {
       const res = await axios.get(
-        `${base_Url}/data/missions/?mission_type=${10}`,
+        `${base_Url}/data/missions/?mission_type=${catId}`,
         {
           headers: {
             Authorization: `Token ${token}`,
@@ -29,7 +30,6 @@ export default function ConfigMissions() {
 
       setMissionData(res.data.data.result);
     } catch (error) {
-
       console.log(error);
     }
   }
@@ -38,6 +38,7 @@ export default function ConfigMissions() {
   }, []);
   return (
     <>
+      <Header title={"Category Missions"} />
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -52,9 +53,9 @@ export default function ConfigMissions() {
                 key={row.name}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell component="th"  scope="row">
+                <TableCell component="th" scope="row">
                   {row.name}
-                </TableCell>             
+                </TableCell>
                 <TableCell align="right">{row.tasks.length}</TableCell>
               </TableRow>
             ))}

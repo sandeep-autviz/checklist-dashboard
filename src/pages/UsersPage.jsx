@@ -13,7 +13,7 @@ import { base_Url } from "../api";
 export default function UsersPage() {
   const [search, setSearch] = useState("");
   const [userData, setUserData] = useState([]);
- 
+
   async function getUserData() {
     try {
       const res = await axios.get(`${base_Url}account/users/`, {
@@ -37,24 +37,42 @@ export default function UsersPage() {
         // search={search}
         setSearch={setSearch}
         buttonTitle="User"
-        title="User Page"
+        title="Users"
       />
       <TableContainer component={Paper}>
-        <Table className="table-striped" sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table
+          className="table-striped mt-5"
+          sx={{ minWidth: 650 }}
+          aria-label="simple table"
+        >
           <TableHead>
             <TableRow>
-              <TableCell>First Name</TableCell>
-              <TableCell align="right">Last Name</TableCell>
-              <TableCell align="right">Username</TableCell>
-              <TableCell align="right">Email</TableCell>
-              <TableCell align="right">Status</TableCell>
-              <TableCell align="right">Action</TableCell>
+              <TableCell>
+                <b>First Name</b>
+              </TableCell>
+              <TableCell align="left">
+                <b>Last Name</b>
+              </TableCell>
+              <TableCell align="left">
+                <b>Username</b>
+              </TableCell>
+              <TableCell align="left">
+                <b>Email</b>
+              </TableCell>
+              <TableCell align="left">
+                <b>Status</b>
+              </TableCell>
+              <TableCell style={{ paddingRight: "30px" }} align="right">
+                <b>Action</b>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {userData
-              .filter((item) =>
-                item.username.toLowerCase().includes(search.toLowerCase())
+              .filter(
+                (item) =>
+                  item.username.toLowerCase().includes(search.toLowerCase()) ||
+                  item.email.toLowerCase().includes(search.toLowerCase())
               )
               .map((item) => (
                 <TableRow
@@ -64,14 +82,14 @@ export default function UsersPage() {
                   <TableCell component="th" scope="row">
                     {item.first_name}
                   </TableCell>
-                  <TableCell align="right">{item.last_name}</TableCell>
-                  <TableCell align="right">{item.username}</TableCell>
-                  <TableCell align="right">{item.email}</TableCell>
-                  <TableCell align="right">
-                    {item.is_active ? "active" : "false"}
+                  <TableCell align="left">{item.last_name}</TableCell>
+                  <TableCell align="left">{item.username}</TableCell>
+                  <TableCell align="left">{item.email}</TableCell>
+                  <TableCell align="left">
+                    {item.is_active ? "Active" : "Inactive"}
                   </TableCell>
                   <TableCell align="right">
-                    <button className=" bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+                    <button className=" inner-head-bg  hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
                       <CiEdit fontSize={20} />
                     </button>
                   </TableCell>

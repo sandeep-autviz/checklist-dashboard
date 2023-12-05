@@ -15,9 +15,10 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 400,
   bgcolor: "background.paper",
-  border: "2px solid #000",
+  borderRadius: 2,
   boxShadow: 24,
   p: 4,
+  
 };
 
 const CatHeader = ({ setActiveTab, activeTab, title }) => {
@@ -55,8 +56,8 @@ const CatHeader = ({ setActiveTab, activeTab, title }) => {
   };
   console.log("cat ", catValue);
   return (
-    <div className="bg-gray-200 p-4 flex">
-      <div class="text-2xl font-bold">
+    <div className="inner-head-bg  p-4 flex">
+      <div class="text-2xl font-bold text-white">
       {title}
       </div>
       <div className="mx-3 ml-auto">
@@ -71,8 +72,8 @@ const CatHeader = ({ setActiveTab, activeTab, title }) => {
         <button
           className={`${
             activeTab === "active"
-              ? "bg-blue-500 text-white"
-              : "bg-gray-300 text-gray-700"
+              ? "bg-[#4BB543] text-white"
+              : "bg-white text-dark"
           } px-4 py-2 rounded-l-md`}
           onClick={() => handleTabClick("active")}
         >
@@ -82,8 +83,8 @@ const CatHeader = ({ setActiveTab, activeTab, title }) => {
         <button
           className={`${
             activeTab === "inactive"
-              ? "bg-blue-500 text-white"
-              : "bg-gray-300 text-gray-700"
+              ? "bg-[#FF0000] text-white"
+              : "bg-white text-dark "
           } px-4 py-2 rounded-r-md`}
           onClick={() => handleTabClick("inactive")}
         >
@@ -97,18 +98,18 @@ const CatHeader = ({ setActiveTab, activeTab, title }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+          <Typography style={{fontSize: '30px'}} id="modal-modal-title" variant="h6" component="h2">
             Add Category
           </Typography>
           <label
-            className="block text-gray-700 text-sm font-bold mb-2"
+            className=" mt-4 mb-4 block text-gray-700 text-md font-bold"
             htmlFor="taskName"
           >
             Category Name:
           </label>
           <input
             onChange={(e) => setCatValue(e.target.value)}
-            className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:border-blue-500"
+            className="mb-4 w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:border-blue-500"
             type="text"
             name="taskName"
             // value={taskData.taskName}
@@ -124,12 +125,14 @@ const CatHeader = ({ setActiveTab, activeTab, title }) => {
             // onChange={handleInputChange}
             placeholder="Enter Task Name"
           />
+          <div class="submit-btn mt-3">
           <button
             onClick={() => saveCat(token)}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="inner-head-bg hover:bg-blue-700 text-white font-bold rounded"
           >
             Save
           </button>
+          </div>
         </Box>
       </Modal>
     </div>

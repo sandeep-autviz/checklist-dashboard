@@ -96,12 +96,12 @@ export default function Task() {
         setMData={setMData}
       />
       <TableContainer className="table-striped" component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table sx={{ minWidth: 650 }} aria-label="simple table" className="mt-5">
           <TableHead>
             <TableRow>
-              <TableCell>Mission Name</TableCell>
-              <TableCell align="right">Total Tasks</TableCell>
-              <TableCell align="right">Action</TableCell>
+              <TableCell style={{paddingLeft: '60px'}}><b>Mission Name</b></TableCell>
+              <TableCell align="left"><b>Total Tasks</b></TableCell>
+              <TableCell style={{paddingRight: '60px'}} align="right"><b>Action</b></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -117,18 +117,18 @@ export default function Task() {
                 >
                   {row.name}
                 </TableCell>
-                <TableCell align="right">{row.tasks.length}</TableCell>
+                <TableCell align="left">{row.tasks.length}</TableCell>
                 <TableCell align="right">
                   <button
                     onClick={(e) => {
                       navigate(`/addSubtask/${row.id}`);
                     }}
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold mx-3 py-2 px-4 rounded"
+                    className="inner-head-bg  hover:bg-blue-700 text-white font-bold mx-3 py-2 px-4 rounded"
                   >
                     <PlusCircle />
                   </button>
                   <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    className="inner-head-bg  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                     onClick={() => handleDelete(row.id)}
                   >
                     <Trash2 />

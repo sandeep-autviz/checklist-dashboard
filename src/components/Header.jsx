@@ -31,32 +31,43 @@ export default function Header({
     } catch (error) {}
   }
   return (
-    <header className="inner-head-bg bg-stone-200 text-white p-2">
+    <header className="inner-head-bg bg-stone-200 text-white p-4">
       <div className="container mx-auto flex justify-between items-center">
         <div>
           <h1 className="text-2xl font-bold">{title}</h1>
         </div>
         <div className="flex items-center space-x-4">
-          <div className="relative top-input">
-            <input
-              onChange={(e) => setSearch(e.target.value)}
-              type="text"
-              placeholder="Search..." 
-              className="bg-gray-700 text-white rounded-md py-1 px-3 focus:outline-none focus:ring focus:border-blue-500"
-            />
-            <button className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-200">
-            <Search />
-            </button>
-            
-          </div>
+          {title === "Dashboard" ||
+          title === "Mission" ||
+          // title === "User Page" ||
+          title === "Category Missions" ||
+          title === "Tasks" ? (
+            <></>
+          ) : (
+            <div className="relative top-input">
+              <input
+                onChange={(e) => setSearch(e.target.value)}
+                type="text"
+                placeholder="Search..."
+                className="bg-gray-700 rounded-md py-1 px-3 focus:outline-none focus:ring focus:border-blue-500"
+              />
+              <button className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-200">
+                <Search />
+              </button>
+            </div>
+          )}
+
           {/* <select className="bg-gray-700 text-white rounded-md py-1 px-3 focus:outline-none focus:ring">
             <option value="filter1">Filter 1</option>
             <option value="filter2">Filter 2</option>
           </select> */}
           {title === "Mission" ? (
-            <Autocomplete className="bg-white"
+            <div class="p-0">
+            <Autocomplete
+              className="bg-white"
               disablePortal
-              id="combo-box-demo" style={{ height: '40px',  borderRadius: '5px' }}
+              id="combo-box-demo"
+              style={{ height: "40px", borderRadius: "5px", padding: "0px" }}
               getOptionLabel={(option) => option.mission_type}
               onChange={(a, b) => {
                 console.log(b.id, " iam a option");
@@ -71,18 +82,32 @@ export default function Header({
               options={cat}
               sx={{ width: 220 }}
               renderInput={(params) => (
-                <TextField style={{ padding: '2', height: '40px', top: '-4' }} {...params} placeholder="Categories" />
+                <TextField
+                  style={{ padding: "1px", height: "40px", top: "-4" }}
+                  {...params}
+                  placeholder="Categories"
+                />
               )}
             />
+            </div>
           ) : (
             <></>
           )}
-          <button
-            onClick={onClick}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Add {buttonTitle}
-          </button>
+          {title === "Dashboard" ||
+          title === "User Page" ||
+          title === "Category Missions" ||
+          title === "Tasks" ? (
+            <></>
+          ) : (
+            <>
+              <button
+                onClick={onClick}
+                className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
+              >
+                Add {buttonTitle}
+              </button>
+            </>
+          )}
         </div>
       </div>
     </header>

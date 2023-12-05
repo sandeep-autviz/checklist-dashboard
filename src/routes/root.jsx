@@ -1,8 +1,10 @@
+import { ClipboardCheck, Settings2, UsersRound } from "lucide-react";
 import "../App.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet, Link, useNavigate } from "react-router-dom";
 
 export default function Root() {
+  const [active, setActive] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
     if (localStorage.getItem("authtoken")) {
@@ -24,106 +26,62 @@ export default function Root() {
             </div>
             <div className="flex-1">
               <ul className="pt-2 pb-4 space-y-1 text-sm side-menu">
-                <li className="rounded-sm">
-                  <p className="flex items-center p-2 space-x-3 rounded-md">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-6 h-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                      />
-                    </svg>
-                    <span>
-                      <Link
-                        to="/dashboard
-                    "
+                <Link to="/dashboard">
+                  <li onClick={() => setActive("home")} className="rounded-sm ">
+                    <p className="flex items-center p-2 space-x-3 rounded-md">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="w-6 h-6"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
                       >
-                        Home
-                      </Link>
-                    </span>
-                  </p>
-                </li>
-                <li className="rounded-sm">
-                  <p
-                    href=""
-                    className="flex items-center p-2 space-x-3 rounded-md"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-6 h-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                        />
+                      </svg>
+                      <span>Home</span>
+                    </p>
+                  </li>{" "}
+                </Link>
+                <Link to="tasks">
+                  <li onClick={() => setActive("mission")} className="rounded-sm">
+                    <p
+                      href=""
+                      className="flex items-center p-2 space-x-3 rounded-md"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
-                      />
-                    </svg>
-                    <span>
-                      <Link to="tasks">Mission</Link>
-                    </span>
-                  </p>
-                </li>
+                      <ClipboardCheck />
+                      <span>Mission</span>
+                    </p>
+                  </li>
+                </Link>
 
-                <li className="rounded-sm">
-                  <p
-                    href=""
-                    className="flex items-center p-2 space-x-3 rounded-md"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-6 h-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
+                <Link to="users">
+                  <li onClick={() => setActive("users")} className="rounded-sm">
+                    <p
+                      href=""
+                      className="flex items-center p-2 space-x-3 rounded-md"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
-                      />
-                    </svg>
-                    <span>
-                      <Link to="users">Users</Link>
-                    </span>
-                  </p>
-                </li>
+                      <UsersRound />
+                      <span>Users</span>
+                    </p>
+                  </li>
+                </Link>
 
-                <li className="rounded-sm">
-                  <p
-                    href=""
-                    className="flex items-center p-2 space-x-3 rounded-md"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="w-6 h-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
+                <Link to="config">
+                  <li onClick={() => setActive("congig")} className="rounded-sm">
+                    <p
+                      href=""
+                      className="flex items-center p-2 space-x-3 rounded-md"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
-                      />
-                    </svg>
-                    <span>
-                      <Link to="config">Config</Link>
-                    </span>
-                  </p>
-                </li>
+                      <Settings2 />
+                      <span>Config</span>
+                    </p>
+                  </li>
+                </Link>
                 <li
                   onClick={() => {
                     localStorage.removeItem("authtoken");

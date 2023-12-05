@@ -102,17 +102,16 @@ export default function Config() {
       </div>
       {activeTab === "active" ? (
         <>
-          <div class="p-3 border-bottom">Active categories</div>
           <TableContainer component={Paper}>
             <Table
-              className="table-striped table"
+              className="table-striped table mt-5"
               sx={{ minWidth: 650 }}
               aria-label="simple table"
             >
               <TableHead>
                 <TableRow>
-                  <TableCell> Name </TableCell>
-                  <TableCell align="right">Action</TableCell>
+                  <TableCell> <b>Name</b> </TableCell>
+                  <TableCell style={{paddingRight: '100px'}} align="right"><b>Action</b></TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -131,9 +130,9 @@ export default function Config() {
                       />
                       <button
                         onClick={() => handleSwitch(row.id, token, false)}
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4"
+                        className="inner-head-bg  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4"
                       >
-                        {activeTab === "active" ? "Activate" : ""}
+                        {activeTab === "active" ? "Inactive" : ""}
                       </button>
                     </TableCell>
                   </TableRow>
@@ -144,17 +143,16 @@ export default function Config() {
         </>
       ) : (
         <>
-          <div className="p-3 border-bottom">Inactive categories</div>
           <TableContainer component={Paper}>
             <Table
-              className="table-striped"
+              className="table-striped mt-5"
               sx={{ minWidth: 650 }}
               aria-label="simple table"
             >
               <TableHead>
                 <TableRow>
-                  <TableCell>Catagories Name</TableCell>
-                  <TableCell align="right">Action</TableCell>
+                  <TableCell><b>Catagories Name</b></TableCell>
+                  <TableCell style={{paddingRight: '40px'}} align="right"><b>Action</b></TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -177,9 +175,9 @@ export default function Config() {
                       )}
                       <button
                         onClick={(e) => handleSwitch(row.id, token, true)}
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4"
+                        className="inner-head-bg hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4"
                       >
-                        Activate
+                        Inactive
                       </button>
                     </TableCell>
                   </TableRow>
