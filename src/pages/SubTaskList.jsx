@@ -11,6 +11,7 @@ import axios from "axios";
 import { base_Url } from "../api";
 import Header from "../components/Header";
 import { Trash2 } from "lucide-react";
+import AddHeader from "../components/AddHeader";
 
 export default function SubTaskList() {
   const token = localStorage.getItem("authtoken");
@@ -53,14 +54,25 @@ export default function SubTaskList() {
   }
   return (
     <>
-      <Header title={"Tasks"} />
+      {/* <Header title={"Tasks"} /> */}
+      <AddHeader title={"Tasks"} buttonTitle={"CSV"} id={missionId} />
       <TableContainer component={Paper}>
-        <Table className="mt-5 table-striped" sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
+        <Table
+          className="head-padding"
+          sx={{ minWidth: 650 }}
+          aria-label="simple table"
+        >
+          <TableHead style={{ background: "#C8D9ED" }}>
             <TableRow>
-              <TableCell><b>Task Name</b></TableCell>
-              <TableCell align="left"><b>Category</b></TableCell>
-              <TableCell style={{paddingRight: '70px'}} align="right"><b>Action</b></TableCell>
+              <TableCell>
+                <b>Task Name</b>
+              </TableCell>
+              <TableCell align="left">
+                <b>Category</b>
+              </TableCell>
+              <TableCell style={{ paddingRight: "70px" }} align="right">
+                <b>Action</b>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -73,8 +85,13 @@ export default function SubTaskList() {
                   {row.name}
                 </TableCell>
                 <TableCell align="left">{row.mission_category}</TableCell>
-                <TableCell align="right" style={{paddingRight: '60px'}}>
-                  <button className="inner-head-bg hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => handleDelete(row.id)}><Trash2 /></button>
+                <TableCell align="right" style={{ paddingRight: "60px" }}>
+                  <button
+                    className="inner-head-bg hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    onClick={() => handleDelete(row.id)}
+                  >
+                    <Trash2 size={18} />
+                  </button>
                 </TableCell>
               </TableRow>
             ))}

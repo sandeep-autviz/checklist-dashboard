@@ -18,7 +18,6 @@ const style = {
   borderRadius: 2,
   boxShadow: 24,
   p: 4,
-  
 };
 
 const CatHeader = ({ setActiveTab, activeTab, title }) => {
@@ -57,9 +56,7 @@ const CatHeader = ({ setActiveTab, activeTab, title }) => {
   console.log("cat ", catValue);
   return (
     <div className="inner-head-bg  p-4 flex">
-      <div class="text-2xl font-bold text-white">
-      {title}
-      </div>
+      <div class="text-2xl font-bold text-white">{title}</div>
       <div className="mx-3 ml-auto">
         <button
           onClick={handleOpen}
@@ -98,7 +95,12 @@ const CatHeader = ({ setActiveTab, activeTab, title }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography style={{fontSize: '30px'}} id="modal-modal-title" variant="h6" component="h2">
+          <Typography
+            style={{ fontSize: "30px" }}
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+          >
             Add Category
           </Typography>
           <label
@@ -125,13 +127,19 @@ const CatHeader = ({ setActiveTab, activeTab, title }) => {
             // onChange={handleInputChange}
             placeholder="Enter Task Name"
           />
-          <div class="submit-btn mt-3">
-          <button
-            onClick={() => saveCat(token)}
-            className="inner-head-bg hover:bg-blue-700 text-white font-bold rounded"
-          >
-            Save
-          </button>
+          <div class="submit-btn mt-3 flex gap-2">
+            <button
+              onClick={() => saveCat(token)}
+              className="inner-head-bg hover:bg-blue-700 text-white font-bold rounded"
+            >
+              Save
+            </button>
+            <button
+              onClick={handleClose}
+              className="inner-head-bg hover:bg-blue-700 text-white font-bold rounded"
+            >
+              Cancel
+            </button>
           </div>
         </Box>
       </Modal>

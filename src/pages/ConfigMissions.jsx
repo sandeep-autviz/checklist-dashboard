@@ -10,6 +10,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { base_Url } from "../api";
 import Header from "../components/Header";
+import AddHeader from "../components/AddHeader";
 
 export default function ConfigMissions() {
   const [missionData, setMissionData] = useState([]);
@@ -38,10 +39,11 @@ export default function ConfigMissions() {
   }, []);
   return (
     <>
-      <Header title={"Category Missions"} />
+      {/* <Header  /> */}
+      <AddHeader title={"Category Missions"} buttonTitle={"CSV"} id={catId} />
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
-          <TableHead>
+          <TableHead style={{ background: "#C8D9ED" }}>
             <TableRow>
               <TableCell>Task</TableCell>
               <TableCell align="right">Subtask count</TableCell>

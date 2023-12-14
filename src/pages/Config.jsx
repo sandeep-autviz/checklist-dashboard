@@ -13,19 +13,23 @@ import { base_Url } from "../api";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+
 export default function Config() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("active");
   const [activeCatData, setActiveCatData] = useState([]);
   const [inActiveCatData, setInActiveCatData] = useState([]);
+
   const [token, setToken] = useState("");
+
   React.useEffect(() => {
-    const token = localStorage.getItem("authtoken") || "";
+    const token = localStorage.getItem("authtoken");
     setToken(token);
-    console.log("i am token ", token);
+    console.log("i am token", token);
     getActiveCatData(token);
     getInActiveCatData(token);
-  }, []);
+  }, [activeTab]);
+
   async function getActiveCatData(token) {
     try {
       const res = await axios.get(
@@ -39,7 +43,7 @@ export default function Config() {
       console.log("res", res.data.data.result);
       setActiveCatData(res.data.data.result);
     } catch (error) {
-      console.log("error");
+      console.log("error", error);
     }
   }
 
@@ -73,19 +77,20 @@ export default function Config() {
           },
         }
       );
+      if (action === false) {
+        const data = activeCatData.filter((item) => item.id != id);
+        setActiveCatData(data);
+      }
+      if (action === true) {
+        const data = inActiveCatData.filter((item) => item.id != id);
+        setInActiveCatData(data);
+      }
+      // navigate("/dashboard");
+      toast.success("Category switched successfully");
     } catch (error) {
       console.log(error);
     }
-    if (action === false) {
-      const data = activeCatData.filter((item) => item.id != id);
-      setActiveCatData(data);
-    }
-    if (action === true) {
-      const data = inActiveCatData.filter((item) => item.id != id);
-      setInActiveCatData(data);
-    }
-    navigate("/dashboard");
-    toast.success("Category switched successfully");
+   
   }
 
   function handleViewButton(id) {
@@ -95,7 +100,7 @@ export default function Config() {
     <>
       <div>
         <CatHeader
-          title="Config"
+          title="Configuration"
           setActiveTab={setActiveTab}
           activeTab={activeTab}
         />
@@ -104,14 +109,19 @@ export default function Config() {
         <>
           <TableContainer component={Paper}>
             <Table
-              className="table-striped table mt-5"
+              className=" table head-padding"
               sx={{ minWidth: 650 }}
               aria-label="simple table"
             >
-              <TableHead>
+              <TableHead style={{ background: "#C8D9ED" }}>
                 <TableRow>
-                  <TableCell> <b>Name</b> </TableCell>
-                  <TableCell style={{paddingRight: '100px'}} align="right"><b>Action</b></TableCell>
+                  <TableCell>
+                    {" "}
+                    <b>Name</b>{" "}
+                  </TableCell>
+                  <TableCell style={{ paddingRight: "100px" }} align="right">
+                    <b>Action</b>
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -151,8 +161,12 @@ export default function Config() {
             >
               <TableHead>
                 <TableRow>
-                  <TableCell><b>Catagories Name</b></TableCell>
-                  <TableCell style={{paddingRight: '40px'}} align="right"><b>Action</b></TableCell>
+                  <TableCell>
+                    <b>Catagories Name</b>
+                  </TableCell>
+                  <TableCell style={{ paddingRight: "40px" }} align="right">
+                    <b>Action</b>
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -177,7 +191,7 @@ export default function Config() {
                         onClick={(e) => handleSwitch(row.id, token, true)}
                         className="inner-head-bg hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4"
                       >
-                        Inactive
+                        Active
                       </button>
                     </TableCell>
                   </TableRow>

@@ -95,13 +95,24 @@ export default function Task() {
         mData={mData}
         setMData={setMData}
       />
-      <TableContainer className="table-striped" component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table" className="mt-5">
-          <TableHead>
+      <TableContainer className="" component={Paper}>
+        <Table
+          sx={{ minWidth: 650 }}
+          aria-label="simple table"
+          // className="mt-5"
+          className="head-padding"
+        >
+          <TableHead style={{ background: "#C8D9ED" }}>
             <TableRow>
-              <TableCell style={{paddingLeft: '60px'}}><b>Mission Name</b></TableCell>
-              <TableCell align="left"><b>Total Tasks</b></TableCell>
-              <TableCell style={{paddingRight: '60px'}} align="right"><b>Action</b></TableCell>
+              <TableCell align="left">
+                <b>Mission Name</b>
+              </TableCell>
+              <TableCell align="left">
+                <b>Total Tasks</b>
+              </TableCell>
+              <TableCell style={{ paddingRight: "60px" }} align="right">
+                <b>Action</b>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -120,18 +131,19 @@ export default function Task() {
                 <TableCell align="left">{row.tasks.length}</TableCell>
                 <TableCell align="right">
                   <button
+                    style={{}}
                     onClick={(e) => {
                       navigate(`/addSubtask/${row.id}`);
                     }}
                     className="inner-head-bg  hover:bg-blue-700 text-white font-bold mx-3 py-2 px-4 rounded"
                   >
-                    <PlusCircle />
+                    <PlusCircle size={18} />
                   </button>
                   <button
                     className="inner-head-bg  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                     onClick={() => handleDelete(row.id)}
                   >
-                    <Trash2 />
+                    <Trash2 size={18} />
                   </button>
                 </TableCell>
               </TableRow>

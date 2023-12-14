@@ -1,4 +1,4 @@
-import { Autocomplete, TextField } from "@mui/material";
+import { Autocomplete, Paper, TextField } from "@mui/material";
 import axios from "axios";
 import React from "react";
 import { base_Url } from "../api";
@@ -62,40 +62,51 @@ export default function Header({
             <option value="filter2">Filter 2</option>
           </select> */}
           {title === "Mission" ? (
-            <div class="p-0">
-            <Autocomplete
-              className="bg-white"
-              disablePortal
-              id="combo-box-demo"
-              style={{ height: "40px", borderRadius: "5px", padding: "0px" }}
-              getOptionLabel={(option) => option.mission_type}
-              onChange={(a, b) => {
-                console.log(b.id, " iam a option");
-                // const filteredData = mData.filter(
-                //   (item) => item.mission_type === b.id
-                // );
-                filterBasedOnCatagory(b.id);
-                // setCatId(b.id);
-                // console.log(filteredData, "filtered data");
-                // setMData(filteredData);
-              }}
-              options={cat}
-              sx={{ width: 220 }}
-              renderInput={(params) => (
-                <TextField
-                  style={{ padding: "1px", height: "40px", top: "-4" }}
-                  {...params}
-                  placeholder="Categories"
-                />
-              )}
-            />
+            <div style={{ backgroundColor: "#164863" }}>
+              <Autocomplete
+                style={{ padding: 0 }}
+                className="bg-white"
+                disablePortal
+                id="combo-box-demo"
+                getOptionLabel={(option) => option.mission_type}
+                onChange={(event, value) => {
+                  if (value) {
+                    console.log(value.id, " I am an option");
+                    filterBasedOnCatagory(value.id);
+                  }
+                }}
+                options={cat}
+                sx={{ width: 220 }}
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    sx={{
+                      padding: 0,
+                      // height: 40,
+                      // fieldset: {
+                      //   border: "2px solid white",
+                      //   borderRadius: "16px",
+                      //   //backgroundColor:"white",
+                      //   boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
+                      //   color: "black",
+                      // },
+                    }}
+                    placeholder="Categories"
+                  />
+                )}
+                PaperComponent={({ children }) => (
+                  <Paper style={{ maxHeight: "300px", overflow: "auto" }}>
+                    {children}
+                  </Paper>
+                )}
+              />
             </div>
           ) : (
             <></>
           )}
           {title === "Dashboard" ||
           title === "User Page" ||
-          title === "Category Missions" ||
+          // title === "Category Missions" ||
           title === "Tasks" ? (
             <></>
           ) : (

@@ -10,6 +10,7 @@ import Header from "../components/Header";
 import { CiEdit } from "react-icons/ci";
 import axios from "axios";
 import { base_Url } from "../api";
+import { Trash2 } from "lucide-react";
 export default function UsersPage() {
   const [search, setSearch] = useState("");
   const [userData, setUserData] = useState([]);
@@ -30,6 +31,22 @@ export default function UsersPage() {
   useEffect(() => {
     getUserData();
   }, []);
+
+  async function deleteUser(id) {
+    try {
+      await axios.delete(`${base_Url}account/users/${id}/`, {
+        headers: {
+          Authorization: `Token caff76fc134cbad91726812cbc04dd040b9bf62e`,
+        },
+      });
+
+      // Filter out the deleted user from userData and update the state
+      const updatedUserData = userData.filter((user) => user.id !== id);
+      setUserData(updatedUserData);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   console.log(search);
   return (
     <>
@@ -41,11 +58,11 @@ export default function UsersPage() {
       />
       <TableContainer component={Paper}>
         <Table
-          className="table-striped mt-5"
           sx={{ minWidth: 650 }}
           aria-label="simple table"
+          className="head-padding"
         >
-          <TableHead>
+          <TableHead style={{ background: "#C8D9ED" }}>
             <TableRow>
               <TableCell>
                 <b>First Name</b>
@@ -76,6 +93,7 @@ export default function UsersPage() {
               )
               .map((item) => (
                 <TableRow
+                  // style={{ padding: "10px, 16px" }}
                   key={item.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
@@ -89,8 +107,10 @@ export default function UsersPage() {
                     {item.is_active ? "Active" : "Inactive"}
                   </TableCell>
                   <TableCell align="right">
-                    <button className=" inner-head-bg  hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
-                      <CiEdit fontSize={20} />
+                    <button className=" inner-head-bg  hover:bg-blue-600 text-white font-semibold  p-2 rounded"
+                          onClick={() => deleteUser(item.id)}
+                    >
+                      <Trash2 size={18} />
                     </button>
                   </TableCell>
                 </TableRow>
