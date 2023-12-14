@@ -96,7 +96,7 @@ const CatHeader = ({ setActiveTab, activeTab, title }) => {
       >
         <Box sx={style}>
           <Typography
-            style={{ fontSize: "30px" }}
+            style={{ fontSize: "30px", textAlign:"center" }}
             id="modal-modal-title"
             variant="h6"
             component="h2"
@@ -127,7 +127,7 @@ const CatHeader = ({ setActiveTab, activeTab, title }) => {
             // onChange={handleInputChange}
             placeholder="Enter Task Name"
           />
-          <div class="submit-btn mt-3 flex gap-2">
+          <div class="submit-btn mt-3 flex justify-evenly">
             <button
               onClick={() => saveCat(token)}
               className="inner-head-bg hover:bg-blue-700 text-white font-bold rounded"

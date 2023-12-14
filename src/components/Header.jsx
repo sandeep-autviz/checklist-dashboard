@@ -130,9 +130,9 @@ export default function Header({
             <div style={{ backgroundColor: "#164863" }}>
               <Menu as="div" className="relative inline-block text-left">
       <div >
-        <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3.5 py-2 text-m font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+        <Menu.Button className="flex w-full justify-center align-center gap-x-1.5 rounded-md bg-white px-3.5 py-2 text-m font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 ">
           Categories
-          <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
+          <ChevronDownIcon className="-mr-1 pt-0.5 h-6 w-7 text-gray-800" aria-hidden="true" />
         </Menu.Button>
       </div>
 
@@ -145,7 +145,7 @@ export default function Header({
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-10 mt-2 w-36 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute right-0 z-10 mt-2 w-[128px] origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
             {cat.map((item)=>{
                 return <Menu.Item  onClick={(event) => handleMenuItemClick(event, item)} >
@@ -249,14 +249,17 @@ export default function Header({
             onChange={(e) => setImage(e.target.value)}
           />
         </div>
-        <div className="flex items-center justify-between submit-btn">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-          >
-            Submit
-          </button>
-        </div>
+        <div className="flex items-center justify-evenly submit-btn">
+          <button
+            className="inner-head-bg hover:bg-blue-700 text-white font-bold rounded"
+            type="submit"
+          >
+            Submit
+          </button>
+          <button class="g-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+            Cancel
+            </button>
+        </div>
       </form>
         </Box>
       </Modal>

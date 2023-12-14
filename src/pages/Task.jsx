@@ -108,6 +108,7 @@ export default function Task() {
   const handleAddTask = async () => {
     try {
       console.log("Adding subtask:", task);
+      handleClose();
       const res = await axios.post(
         `${base_Url}data/mission-tasks/`,
         { name: task, mission: userId },
@@ -177,7 +178,7 @@ export default function Task() {
                       //navigate(`/addSubtask/${row.id}`);
                       handleOpen
                     }
-                    className="inner-head-bg  hover:bg-blue-700 text-white font-bold mx-3 py-2 px-4 rounded"
+                    className="inner-head-bg  hover:bg-blue-200 text-white font-bold mx-3 py-2 px-4 rounded"
                   >
                     <PlusCircle size={18} />
                   </button>
@@ -197,7 +198,10 @@ export default function Task() {
             Add Subtask
           </label>
           <input
-            className="shadow appearance-none border rounded w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow 
+            appearance-none
+             border 
+            rounded w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="taskInput"
             type="text"
             placeholder="Enter subtask..."
