@@ -15,6 +15,11 @@ import Modal from "@mui/material/Modal";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { PlusCircle, Trash2 } from "lucide-react";
+//import * as React from 'react';
+
+
+import Button from '@mui/material/Button';
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -22,18 +27,26 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 400,
   bgcolor: "background.paper",
-  border: "2px solid #000",
+  borderRadius: 2,
   boxShadow: 24,
   p: 4,
 };
+
+
 export default function Task() {
-  const [mData, setMData] = useState([]);
   const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [mData, setMData] = useState([]);
+  //const [open, setOpen] = React.useState(false);
   const [catId, setCatId] = useState(null);
   const [cat, setCat] = useState([]);
   const navigate = useNavigate();
   const token = localStorage.getItem("authtoken");
-  const handleClose = () => setOpen(false);
+  //const handleClose = () => setOpen(false);
+
+ // const [open2, setOpen2] = React.useState(false);
+  
   useEffect(() => {
     getMissionD(token);
     getCat();
@@ -82,7 +95,35 @@ export default function Task() {
     const data = mData.filter((item) => item.id != id);
     setMData(data);
   }
+  const [task, setTask] = useState("");
 
+  //const navigate = useNavigate();
+  //const { userId } = useParams();
+  //console.log(userId, "parm id");
+  //const token = localStorage.getItem("authtoken");
+  const handleChange = (e) => {
+    setTask(e.target.value);
+  };
+
+  const handleAddTask = async () => {
+    try {
+      console.log("Adding subtask:", task);
+      const res = await axios.post(
+        `${base_Url}data/mission-tasks/`,
+        { name: task, mission: userId },
+        {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        }
+      );
+      toast.success("Subtask added successfully");
+      //navigate("/tasks");
+    } catch (error) {
+      console.log(error);
+    }
+    setTask("");
+  };
   return (
     <>
       <Header
@@ -91,7 +132,7 @@ export default function Task() {
         cat={cat}
         setCatId={setCatId}
         mission={true}
-        onClick={onAddMissionClick}
+       // onClick={handleOpen2}
         mData={mData}
         setMData={setMData}
       />
@@ -132,13 +173,49 @@ export default function Task() {
                 <TableCell align="right">
                   <button
                     style={{}}
-                    onClick={(e) => {
-                      navigate(`/addSubtask/${row.id}`);
-                    }}
+                    onClick={
+                      //navigate(`/addSubtask/${row.id}`);
+                      handleOpen
+                    }
                     className="inner-head-bg  hover:bg-blue-700 text-white font-bold mx-3 py-2 px-4 rounded"
                   >
                     <PlusCircle size={18} />
                   </button>
+                  <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+        {/* <div className="bg-white  add-subtask shadow-md rounded px-8 pt-6 pb-8 mb-4"> */}
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-xl font-semibold mb-4"
+            htmlFor="taskInput"
+          >
+            Add Subtask
+          </label>
+          <input
+            className="shadow appearance-none border rounded w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            id="taskInput"
+            type="text"
+            placeholder="Enter subtask..."
+            value={task}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="submit-btn">
+          <button
+            className="inner-head-bg hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            onClick={handleAddTask}
+          >
+            Add
+          </button>
+        </div>
+      {/* </div> */}
+        </Box>
+      </Modal>
                   <button
                     className="inner-head-bg  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                     onClick={() => handleDelete(row.id)}
@@ -151,34 +228,7 @@ export default function Task() {
           </TableBody>
         </Table>
       </TableContainer>
-      <div>
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              Add a task
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              <input
-                onChange={(e) => setCatValue(e.target.value)}
-                className="w-full border rounded-md py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:border-blue-500"
-                type="text"
-                name="taskName"
-                // value={taskData.taskName}
-                // onChange={handleInputChange}
-                placeholder="Enter Task Name"
-              />
-            </Typography>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              Add{" "}
-            </button>
-          </Box>
-        </Modal>
-      </div>
+      
     </>
   );
 }

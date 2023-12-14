@@ -21,7 +21,7 @@ export default function Root() {
           <div className="space-y-3">
             <div className="flex items-center">
               <div class="sidebar-logo flex justify-center items-center">
-                <h2 className="text-xl font-extrabold">Todo-Checklist</h2>
+                <h2 className="text-xl font-extrabold">Event-Planning</h2>
               </div>
             </div>
             <div className="flex-1">

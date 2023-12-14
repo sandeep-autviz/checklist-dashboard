@@ -11,7 +11,7 @@ export default function Dashboard() {
         label: "Missions",
       },
     ],
-    width: 1300,
+    width: 1100,
     height: 500,
 
     // sx: {
